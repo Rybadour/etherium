@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bngmuo5ek1rh3"]
+[gd_scene load_steps=17 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Texture2D" uid="uid://kqnxww30o3be" path="res://Assets/ore.png" id="2_hcvo6"]
 [ext_resource type="Texture2D" uid="uid://c632t08aonoal" path="res://Assets/lpc-walls/walls.png" id="3_xs5d8"]
 [ext_resource type="PackedScene" path="res://Components/Worker.tscn" id="4_qv7kr"]
 [ext_resource type="Script" path="res://Scripts/Camera2d.gd" id="5_mgs6q"]
-[ext_resource type="PackedScene" uid="uid://bbe6x0xwcajj7" path="res://Components/Resource.tscn" id="5_xwsky"]
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="5_o7vuv"]
+[ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
+[ext_resource type="Texture2D" uid="uid://wtaic6hpdy7f" path="res://Assets/gold_treasure_icons_16x16/5.png" id="7_my7gg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2yr7h"]
 texture = ExtResource("1_cv267")
@@ -244,6 +246,11 @@ sources/0 = SubResource("TileSetAtlasSource_2yr7h")
 sources/1 = SubResource("TileSetAtlasSource_wrgdy")
 sources/2 = SubResource("TileSetAtlasSource_wiedq")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sygxh"]
+resource_name = "OreAtlas"
+atlas = ExtResource("2_hcvo6")
+region = Rect2(136, 328, 15, 14)
+
 [node name="MainGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -289,31 +296,46 @@ anchors_preset = 0
 offset_left = 12.0
 offset_top = 84.0
 offset_right = 131.0
-offset_bottom = 324.0
+offset_bottom = 472.0
+script = ExtResource("5_o7vuv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Resources"]
-layout_mode = 1
+layout_mode = 0
 offset_right = 119.0
 offset_bottom = 116.0
 theme_override_constants/separation = 10
 
-[node name="Resource" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
+[node name="Money" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
 offset_right = 119.0
 
-[node name="Resource2" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
+[node name="TextureRect" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="0"]
+offset_right = 16.0
+texture = ExtResource("7_my7gg")
+
+[node name="AmountLabel" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="1"]
+offset_left = 25.0
+offset_right = 98.0
+
+[node name="Copper" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
 offset_top = 42.0
 offset_right = 119.0
 offset_bottom = 74.0
 
-[node name="Resource3" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
+[node name="Iron" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
 offset_top = 84.0
 offset_right = 119.0
 offset_bottom = 116.0
 
+[node name="TextureRect" parent="CanvasLayer/Resources/VBoxContainer/Iron/HBoxContainer" index="0"]
+texture = SubResource("AtlasTexture_sygxh")
+
 [node name="Camera2d" type="Camera2D" parent="."]
 position = Vector2(340, 327)
 current = true
 script = ExtResource("5_mgs6q")
+
+[editable path="CanvasLayer/Resources/VBoxContainer/Money"]
+[editable path="CanvasLayer/Resources/VBoxContainer/Iron"]

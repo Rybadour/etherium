@@ -13,9 +13,21 @@ _global_script_classes=[{
 "class": &"MainCamera",
 "language": &"GDScript",
 "path": "res://Scripts/Camera2d.gd"
+}, {
+"base": "Control",
+"class": &"Resources",
+"language": &"GDScript",
+"path": "res://Scripts/Resources.gd"
+}, {
+"base": "Node",
+"class": &"Utils",
+"language": &"GDScript",
+"path": "res://Scripts/Utils.gd"
 }]
 _global_script_class_icons={
-"MainCamera": ""
+"MainCamera": "",
+"Resources": "",
+"Utils": ""
 }
 
 [application]
