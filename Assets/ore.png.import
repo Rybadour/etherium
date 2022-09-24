@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://he1i03lqdjlj"
-path="res://.godot/imported/floors.png-148debcf6fda14a8ec30da909859019a.ctex"
+uid="uid://kqnxww30o3be"
+path="res://.godot/imported/ore.png-378556fe2ad9a3c47190a96f39f1a1a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lpc-floors/floors.png"
-dest_files=["res://.godot/imported/floors.png-148debcf6fda14a8ec30da909859019a.ctex"]
+source_file="res://Assets/ore.png"
+dest_files=["res://.godot/imported/ore.png-378556fe2ad9a3c47190a96f39f1a1a5.ctex"]
 
 [params]
 

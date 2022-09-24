@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6ad18rglviwl"
-path="res://.godot/imported/roguelikeChar_transparent.png-1812bfc643e8e775e03439ddcdac5108.ctex"
+path="res://.godot/imported/roguelikeChar_transparent.png-d8f8406077364854e1955be42c5439ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://roguelikeChar_transparent.png"
-dest_files=["res://.godot/imported/roguelikeChar_transparent.png-1812bfc643e8e775e03439ddcdac5108.ctex"]
+source_file="res://Assets/roguelikeChar_transparent.png"
+dest_files=["res://.godot/imported/roguelikeChar_transparent.png-d8f8406077364854e1955be42c5439ba.ctex"]
 
 [params]
 

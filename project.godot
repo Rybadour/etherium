@@ -8,9 +8,35 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Camera2D",
+"class": &"MainCamera",
+"language": &"GDScript",
+"path": "res://Scripts/Camera2d.gd"
+}]
+_global_script_class_icons={
+"MainCamera": ""
+}
+
 [application]
 
 config/name="Etherium_Gd4"
-run/main_scene="res://MainGame.tscn"
+run/main_scene="res://Scenes/MainGame.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[input]
+
+Drag={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"command_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.196078, 0.129412, 0.145098, 1)
