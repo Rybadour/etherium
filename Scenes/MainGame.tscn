@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=19 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_dvsms"]
 [ext_resource type="Texture2D" uid="uid://kqnxww30o3be" path="res://Assets/ore.png" id="2_hcvo6"]
 [ext_resource type="Texture2D" uid="uid://c632t08aonoal" path="res://Assets/lpc-walls/walls.png" id="3_xs5d8"]
 [ext_resource type="PackedScene" uid="uid://c1a4kmi7x7piu" path="res://Components/Worker.tscn" id="4_qv7kr"]
+[ext_resource type="Script" path="res://Scripts/Rocks.gd" id="5_dn8a1"]
 [ext_resource type="Script" path="res://Scripts/Camera2d.gd" id="5_mgs6q"]
 [ext_resource type="Script" path="res://Scripts/Resources.gd" id="5_o7vuv"]
 [ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
@@ -284,6 +285,10 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 2
 layer_2/tile_data = PackedInt32Array(327688, 196609, 1, 393224, 196609, 1, 393225, 196609, 1, 458761, 196609, 1, 524297, 196609, 1, 589832, 196609, 1, 655368, 196609, 1, 196618, 196609, 1, 393226, 196609, 1, 393227, 196609, 1, 393228, 196609, 1, 458764, 196609, 1, 524300, 196609, 1, 589836, 196609, 1, 655372, 196609, 1, 720904, 196609, 1, 720905, 196609, 1, 786442, 196609, 1, 786443, 196609, 1, 786444, 196609, 1, 786445, 196609, 1, 786446, 196609, 1, 786447, 196609, 1)
+script = ExtResource("5_dn8a1")
+
+[node name="RockUIContainer" type="Node2D" parent="TileMap"]
+z_index = 3
 
 [node name="Worker" parent="." instance=ExtResource("4_qv7kr")]
 z_index = 2
