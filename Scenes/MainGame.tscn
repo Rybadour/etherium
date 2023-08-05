@@ -290,10 +290,10 @@ script = ExtResource("5_dn8a1")
 [node name="RockUIContainer" type="Node2D" parent="TileMap"]
 z_index = 3
 
-[node name="Worker" parent="." instance=ExtResource("4_qv7kr")]
+[node name="Worker" parent="TileMap" instance=ExtResource("4_qv7kr")]
 z_index = 2
 y_sort_enabled = true
-position = Vector2(176, 272)
+position = Vector2(245, 78)
 scale = Vector2(1.5, 1.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
