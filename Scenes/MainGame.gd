@@ -7,7 +7,7 @@ var followTimer = Timer.new();
 var pathToFollow: PackedVector2Array;
 var attackTimer = Timer.new();
 var isWorkerMining: bool = false;
-var targetRock: RockUI;
+var targetRock: Vector2i;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +16,7 @@ func _ready():
 	add_child(followTimer);
 
 	attackTimer.connect("timeout", attackTime);
-	attackTimer.wait_time = 0.2;
+	attackTimer.wait_time = 1;
 	add_child(attackTimer);
 
 	tileMap.connect('cellClicked', moveToAttackRock);
@@ -40,20 +40,19 @@ func followTime():
 
 
 func attackTime():
-	if targetRock == null || targetRock.health <= 0:
+	var isDead = tileMap.hurtRock(targetRock, 4);
+	if isDead:
 		isWorkerMining = false;
 		attackTimer.stop();
 		worker.stopMiningAnimation();
 		return;
-
-	targetRock.takeDamage(1);
 
 
 func moveToAttackRock(cell: Vector2i):
 	if !tileMap.rocks.has(cell):
 		return;
 
-	targetRock = tileMap.rocks[cell];
+	targetRock = cell;
 
 	var fastestPath: PackedVector2Array;
 	for neighbour in tileMap.get_surrounding_cells(cell):

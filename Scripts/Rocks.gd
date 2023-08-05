@@ -3,6 +3,8 @@ class_name Rocks
 
 signal cellClicked(cell: Vector2i)
 
+const ROCKS_LAYER = 2;
+
 @onready var rockUIContainer: Node2D = get_node("RockUIContainer");
 var rockScene = preload("res://Components/RockUI.tscn")
 
@@ -18,7 +20,7 @@ func _ready():
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES;
 	astar_grid.update();
 
-	var rockCells = self.get_used_cells(2);
+	var rockCells = self.get_used_cells(ROCKS_LAYER);
 	for cell in rockCells:
 		var rockUI: RockUI = rockScene.instantiate();
 		rockUI.position = self.map_to_local(cell);
@@ -37,7 +39,17 @@ func _input(event):
 		cellClicked.emit(self.local_to_map(self.get_local_mouse_position()));
 
 	
-func hurtRock(rockCell: Vector2i, damage: int):
+func hurtRock(rockCell: Vector2i, damage: int) -> bool:
+	if !rocks.has(rockCell):
+		return true;
+
 	var rock = rocks[rockCell];
-	if (rock != null):
-		rock.takeDamage(damage);
+	rock.takeDamage(damage);
+	if rock.health <= 0:
+		rockUIContainer.remove_child(rock);
+		self.set_cell(ROCKS_LAYER, rockCell);
+		rocks.erase(rockCell);
+		astar_grid.set_point_solid(rockCell, false);
+		return true;
+	
+	return false;
