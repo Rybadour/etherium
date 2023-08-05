@@ -27,6 +27,10 @@ func _ready():
 
 		astar_grid.set_point_solid(cell);
 
+	var wallCells = self.get_used_cells(1);
+	for cell in wallCells:
+		astar_grid.set_point_solid(cell);
+
 
 func _input(event):
 	if event.is_action_released("primary_select"):

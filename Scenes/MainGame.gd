@@ -13,9 +13,6 @@ func _ready():
 	add_child(followTimer);
 	tileMap.connect('cellClicked', targetRock);
 
-func mapClick():
-
-	moveWorker(Vector2i(11, 8));
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,10 +29,23 @@ func followTime():
 
 
 func targetRock(cell: Vector2i):
-	print_debug("Target: ", cell);
-	moveWorker(cell);
+	if !tileMap.rocks.has(cell):
+		return;
+
+	var fastestPath: PackedVector2Array;
+	for neighbour in tileMap.get_surrounding_cells(cell):
+		var path: PackedVector2Array = getPath(neighbour);
+		if !path.is_empty() && (fastestPath.is_empty() || path.size() < fastestPath.size()):
+			fastestPath = path;
+		
+	if fastestPath != null:
+		moveWorker(fastestPath);
 
 
-func moveWorker(target: Vector2i):
-	pathToFollow = tileMap.astar_grid.get_point_path(tileMap.local_to_map(worker.position), target);
+func moveWorker(path: PackedVector2Array):
+	pathToFollow = path;
 	followTimer.start();
+
+
+func getPath(target: Vector2i):
+	return tileMap.astar_grid.get_point_path(tileMap.local_to_map(worker.position), target)
