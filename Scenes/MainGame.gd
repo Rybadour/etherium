@@ -1,7 +1,7 @@
 extends Control
 
 @onready var tileMap: Rocks = get_node("TileMap");
-@onready var worker: Node2D = get_node("TileMap/Worker");
+@onready var worker: Worker = get_node("TileMap/Worker");
 
 var followTimer = Timer.new();
 var pathToFollow: PackedVector2Array;
@@ -32,6 +32,7 @@ func followTime():
 		followTimer.stop();
 		isWorkerMining = true;
 		attackTimer.start();
+		worker.startMiningAnimation();
 		return
 		
 	worker.position = pathToFollow[0];
@@ -42,6 +43,7 @@ func attackTime():
 	if targetRock == null || targetRock.health <= 0:
 		isWorkerMining = false;
 		attackTimer.stop();
+		worker.stopMiningAnimation();
 		return;
 
 	targetRock.takeDamage(1);
