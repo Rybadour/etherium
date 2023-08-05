@@ -6,7 +6,7 @@ signal cellClicked(cell: Vector2i)
 const ROCKS_LAYER = 2;
 
 @onready var rockUIContainer: Node2D = get_node("RockUIContainer");
-var rockScene = preload("res://Components/RockUI.tscn")
+var rockScene = preload("res://Components/Rock.tscn")
 
 var astar_grid = AStarGrid2D.new();
 var rocks: Dictionary = {};
@@ -22,7 +22,7 @@ func _ready():
 
 	var rockCells = self.get_used_cells(ROCKS_LAYER);
 	for cell in rockCells:
-		var rockUI: RockUI = rockScene.instantiate();
+		var rockUI: Rock = rockScene.instantiate();
 		rockUI.position = self.map_to_local(cell);
 		rocks[cell] = rockUI;
 		rockUIContainer.add_child(rockUI);

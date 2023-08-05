@@ -1,23 +1,32 @@
 extends Control
-class_name MyResources
+class_name GlobalResources
 
 var resourceComp = preload("res://Components/Resource.tscn");
 
+enum ResourceType {MONEY, COPPER}
+
 var resources: Dictionary = {
-	"Money": 123500,
-	"Copper": 23,
-	"Iron": 0,
+	ResourceType.MONEY: 0,
+	ResourceType.COPPER: 0,
+}
+var resourceIds: Dictionary = {
+	ResourceType.MONEY: "Money",
+	ResourceType.COPPER: "Copper",
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in resources:
-		var resource = get_node("VBoxContainer/" + i);
+	for r in resources:
+		var resource = get_node("VBoxContainer/" + resourceIds[r]);
 		if resource != null:
-			resource.setAmount(resources[i]);
+			resource.setAmount(resources[r]);
 			resource.set_visible(true);
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func addResource(res: ResourceType, amount: float):
+	if !resources.has(res):
+		return;
+
+	resources[res] += amount;
+	var resource = get_node("VBoxContainer/" + resourceIds[res]);
+	resource.setAmount(resources[res]);

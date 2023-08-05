@@ -1,6 +1,7 @@
 extends Control
 
 @onready var tileMap: Rocks = get_node("TileMap");
+@onready var resources: GlobalResources = get_node("CanvasLayer/Resources");
 @onready var worker: Worker = get_node("TileMap/Worker");
 
 var followTimer = Timer.new();
@@ -45,6 +46,7 @@ func attackTime():
 		isWorkerMining = false;
 		attackTimer.stop();
 		worker.stopMiningAnimation();
+		resources.addResource(GlobalResources.ResourceType.COPPER, 5);
 		return;
 
 

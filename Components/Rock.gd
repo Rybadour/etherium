@@ -1,5 +1,5 @@
 extends Node2D
-class_name RockUI
+class_name Rock
 
 @onready var healthBar: ProgressBar = get_node("Health/HealthBar");
 
