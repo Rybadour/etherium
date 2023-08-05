@@ -8,33 +8,11 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Camera2D",
-"class": &"MainCamera",
-"language": &"GDScript",
-"path": "res://Scripts/Camera2d.gd"
-}, {
-"base": "Control",
-"class": &"Resources",
-"language": &"GDScript",
-"path": "res://Scripts/Resources.gd"
-}, {
-"base": "Node",
-"class": &"Utils",
-"language": &"GDScript",
-"path": "res://Scripts/Utils.gd"
-}]
-_global_script_class_icons={
-"MainCamera": "",
-"Resources": "",
-"Utils": ""
-}
-
 [application]
 
 config/name="Etherium_Gd4"
 run/main_scene="res://Scenes/MainGame.tscn"
-config/features=PackedStringArray("4.0", "Vulkan Clustered")
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.svg"
 
 [display]
@@ -45,7 +23,7 @@ window/stretch/mode="viewport"
 
 Drag={
 "deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"store_command":true,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"command_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
 

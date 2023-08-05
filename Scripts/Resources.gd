@@ -1,5 +1,5 @@
 extends Control
-class_name Resources
+class_name MyResources
 
 var resourceComp = preload("res://Components/Resource.tscn");
 

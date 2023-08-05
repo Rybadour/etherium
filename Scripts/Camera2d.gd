@@ -1,5 +1,5 @@
 extends Camera2D
-class_name MainCamera
+class_name MyCamera
 
 var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
