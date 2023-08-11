@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=24 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_dvsms"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/Resources.gd" id="5_o7vuv"]
 [ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
 [ext_resource type="Texture2D" uid="uid://wtaic6hpdy7f" path="res://Assets/gold_treasure_icons_16x16/5.png" id="7_my7gg"]
+[ext_resource type="Script" path="res://Scripts/LootGeneration.gd" id="11_gsuei"]
+[ext_resource type="Script" path="res://Scripts/Resources/Affix.gd" id="12_bkeer"]
+[ext_resource type="Script" path="res://Scripts/Resources/Item.gd" id="13_y3tjq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1mnoq"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -254,6 +257,20 @@ sources/0 = SubResource("TileSetAtlasSource_2yr7h")
 sources/1 = SubResource("TileSetAtlasSource_wrgdy")
 sources/2 = SubResource("TileSetAtlasSource_wiedq")
 
+[sub_resource type="Resource" id="Resource_soujy"]
+script = ExtResource("12_bkeer")
+id = ""
+itemNameMod = ""
+descriptionTemplate = ""
+type = 0
+tiers = Array[Resource("res://Scripts/Resources/AffixTier.gd")]([])
+
+[sub_resource type="Resource" id="Resource_vxj53"]
+script = ExtResource("13_y3tjq")
+name = "Pickaxe"
+slotType = 0
+affixes = Array[ExtResource("12_bkeer")]([SubResource("Resource_soujy")])
+
 [node name="MainGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -333,5 +350,9 @@ layout_mode = 2
 [node name="Camera2d" type="Camera2D" parent="."]
 position = Vector2(340, 327)
 script = ExtResource("5_mgs6q")
+
+[node name="LootGen" type="Node2D" parent="."]
+script = ExtResource("11_gsuei")
+headItems = Array[ExtResource("13_y3tjq")]([SubResource("Resource_vxj53")])
 
 [editable path="CanvasLayer/Resources/VBoxContainer/Gold"]
