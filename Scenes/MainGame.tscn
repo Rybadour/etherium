@@ -375,7 +375,6 @@ theme_override_constants/v_separation = 10
 
 [node name="ItemTile" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
 layout_mode = 2
-itemName = "Hammer"
 icon = ExtResource("11_th6o8")
 
 [node name="ItemTile3" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
