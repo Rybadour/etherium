@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=23 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_dvsms"]
@@ -10,9 +10,10 @@
 [ext_resource type="Script" path="res://Scripts/Resources.gd" id="5_o7vuv"]
 [ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
 [ext_resource type="Texture2D" uid="uid://wtaic6hpdy7f" path="res://Assets/gold_treasure_icons_16x16/5.png" id="7_my7gg"]
-[ext_resource type="Script" path="res://Scripts/LootGeneration.gd" id="11_gsuei"]
-[ext_resource type="Script" path="res://Scripts/Resources/Affix.gd" id="12_bkeer"]
-[ext_resource type="Script" path="res://Scripts/Resources/Item.gd" id="13_y3tjq"]
+[ext_resource type="Script" path="res://Scenes/InventoryPanel.gd" id="10_1tvl8"]
+[ext_resource type="PackedScene" uid="uid://dr7eba6ihmue2" path="res://Components/ItemTile.tscn" id="10_kkn6j"]
+[ext_resource type="Texture2D" uid="uid://c6eyplrshr1ag" path="res://Assets/flat-hammer.svg" id="11_th6o8"]
+[ext_resource type="Texture2D" uid="uid://3nkhhafk8b2s" path="res://Assets/gloves.svg" id="12_1ttqw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1mnoq"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -330,29 +331,78 @@ offset_right = 119.0
 offset_bottom = 116.0
 theme_override_constants/separation = 10
 
-[node name="Gold" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
+[node name="Money" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
 
-[node name="HBoxContainer" parent="CanvasLayer/Resources/VBoxContainer/Gold" index="0"]
+[node name="HBoxContainer" parent="CanvasLayer/Resources/VBoxContainer/Money" index="0"]
 layout_mode = 1
 offset_left = 5.0
 
-[node name="TextureRect" parent="CanvasLayer/Resources/VBoxContainer/Gold/HBoxContainer" index="0"]
+[node name="TextureRect" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="0"]
 layout_mode = 2
 texture = ExtResource("7_my7gg")
 
-[node name="AmountLabel" parent="CanvasLayer/Resources/VBoxContainer/Gold/HBoxContainer" index="1"]
+[node name="AmountLabel" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="1"]
 layout_mode = 2
 
 [node name="Copper" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
 
+[node name="InventoryPanel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(128, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("10_1tvl8")
+
+[node name="Button" type="Button" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_right = 8.0
+offset_bottom = 36.0
+grow_vertical = 2
+text = "<"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="ItemTile" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
+layout_mode = 2
+icon = ExtResource("11_th6o8")
+
+[node name="ItemTile3" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
+layout_mode = 2
+icon = ExtResource("12_1ttqw")
+
+[node name="ItemTile2" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
+layout_mode = 2
+icon = ExtResource("12_1ttqw")
+
 [node name="Camera2d" type="Camera2D" parent="."]
 position = Vector2(340, 327)
 script = ExtResource("5_mgs6q")
 
-[node name="LootGen" type="Node2D" parent="."]
-script = ExtResource("11_gsuei")
-headItems = Array[ExtResource("13_y3tjq")]([SubResource("Resource_vxj53")])
+[connection signal="pressed" from="CanvasLayer/InventoryPanel/Button" to="CanvasLayer/InventoryPanel" method="expandToggle"]
 
-[editable path="CanvasLayer/Resources/VBoxContainer/Gold"]
+[editable path="CanvasLayer/Resources/VBoxContainer/Money"]
