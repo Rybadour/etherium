@@ -1,6 +1,9 @@
 extends Panel
 class_name InventoryPanel
 
+const COLLAPSED_SIZE = 210;
+const EXPANDED_SIZE = 455;
+
 var itemTile = preload('res://Components/ItemTile.tscn');
 
 var isExpanded = false;
@@ -12,6 +15,7 @@ var itemTileMap: Dictionary; #Item objectid -> ItemTile;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	custom_minimum_size.x = COLLAPSED_SIZE;
 	gearSlots.connect("returnItem", addItemToList);
 
 
@@ -22,12 +26,12 @@ func _process(delta):
 
 func expandToggle():
 	if isExpanded:
-		custom_minimum_size.x = 128;
+		custom_minimum_size.x = COLLAPSED_SIZE;
 		grid.columns = 1;
 		isExpanded = false;
 		gearSlots.visible = false;
 	else:
-		custom_minimum_size.x = 328;
+		custom_minimum_size.x = EXPANDED_SIZE;
 		grid.columns = 3;
 		isExpanded = true;
 		gearSlots.visible = true;

@@ -27,6 +27,7 @@ func setup(mainGame: MainGame):
 
 func startMiningAnimation():
 	miningAnim.play("Mining");
+	miningAnim.speed_scale = getAttackSpeed();
 
 
 func stopMiningAnimation():
