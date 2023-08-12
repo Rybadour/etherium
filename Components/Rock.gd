@@ -7,16 +7,16 @@ var MAX_HEALTH = 10;
 var health: int = 10;
 
 func _ready():
-  updateBar();
+	updateBar();
 
 
 func takeDamage(damage: int):
-  health -= damage;
-  updateBar();
+	health -= damage;
+	updateBar();
 
 
 func updateBar():
-  healthBar.visible = health < MAX_HEALTH;
-  healthBar.max_value = MAX_HEALTH;
-  healthBar.min_value = 0;
-  healthBar.value = health;
+	healthBar.visible = health < MAX_HEALTH;
+	healthBar.max_value = MAX_HEALTH;
+	healthBar.min_value = 0;
+	healthBar.value = health;

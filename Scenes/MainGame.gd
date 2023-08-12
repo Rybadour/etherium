@@ -4,6 +4,7 @@ extends Control
 @onready var resources: GlobalResources = get_node("CanvasLayer/Resources");
 @onready var worker: Worker = get_node("TileMap/Worker");
 @onready var inventory: InventoryPanel = get_node("CanvasLayer/InventoryPanel");
+@onready var lootGen: LootGeneration = get_node("LootGeneration");
 
 var followTimer = Timer.new();
 var pathToFollow: PackedVector2Array;
@@ -48,7 +49,7 @@ func attackTime():
 		attackTimer.stop();
 		worker.stopMiningAnimation();
 		resources.addResource(GlobalResources.ResourceType.COPPER, 5);
-		inventory.addItem(Item.new("Steel Pickaxe"));
+		inventory.addItem(lootGen.generateItem());
 		return;
 
 

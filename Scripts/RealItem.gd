@@ -9,4 +9,5 @@ var prefixes: Dictionary; #StatType -> float;
 var suffixes: Dictionary; #StatType -> float;
 
 func _init(item: Item):
-  self.item = item;
+	self.item = item;
+	fullName = item.name;

@@ -258,20 +258,6 @@ sources/0 = SubResource("TileSetAtlasSource_2yr7h")
 sources/1 = SubResource("TileSetAtlasSource_wrgdy")
 sources/2 = SubResource("TileSetAtlasSource_wiedq")
 
-[sub_resource type="Resource" id="Resource_soujy"]
-script = ExtResource("12_bkeer")
-id = ""
-itemNameMod = ""
-descriptionTemplate = ""
-type = 0
-tiers = Array[Resource("res://Scripts/Resources/AffixTier.gd")]([])
-
-[sub_resource type="Resource" id="Resource_vxj53"]
-script = ExtResource("13_y3tjq")
-name = "Pickaxe"
-slotType = 0
-affixes = Array[ExtResource("12_bkeer")]([SubResource("Resource_soujy")])
-
 [node name="MainGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15

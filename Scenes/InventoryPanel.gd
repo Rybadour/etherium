@@ -28,7 +28,7 @@ func expandToggle():
 		isExpanded = true;
 
 
-func addItem(item: Item):
+func addItem(item: RealItem):
 	items.append(item);
 	var tile: ItemTile = itemTile.instantiate();
 	tile.item = item;
