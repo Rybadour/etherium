@@ -24,8 +24,18 @@ func getModifierText(stat: Globals.StatType, value: float):
 		text = str(value) + ' Mining Power';
 	elif stat == Globals.StatType.IncreasedMiningPower:
 		text = '+' + str(value) + '% Mining Power';
+	elif stat == Globals.StatType.ActionSpeed:
+		text = str(value) + ' Action Speed';
+	elif stat == Globals.StatType.IncreasedActionSpeed:
+		text = '+' + str(value) + '% Action Speed';
 	elif stat == Globals.StatType.FireDamage:
 		text = '+' + str(value) + ' Fire Damage';
+	elif stat == Globals.StatType.IncreasedFireDamage:
+		text = '+' + str(value) + '% Fire Damage';
+	elif stat == Globals.StatType.OilCapacity:
+		text = '+' + str(value) + ' Oil Capacity';
+	elif stat == Globals.StatType.MovementSpeed:
+		text = '+' + str(value) + '% Move Speed';
 	return text;
 
 
