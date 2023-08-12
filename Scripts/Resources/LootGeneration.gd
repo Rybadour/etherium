@@ -4,7 +4,13 @@ var itemConfig: ItemConfig = ItemConfig.new();
 
 var rand = RandomNumberGenerator.new();
 
-# Note: This should probably first choose an item type then an individual item from the list
+const ITEM_FROM_ROCK_CHANCE = 0.1;
+
+func generateLootFromRock():
+	if rand.randf() <= ITEM_FROM_ROCK_CHANCE:
+		return generateItem();
+
+
 func generateItem():
 	var possibleItems: Dictionary = {
 		Globals.SlotType.Weapon: itemConfig.weaponItems,

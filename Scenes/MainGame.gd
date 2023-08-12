@@ -25,7 +25,7 @@ func _ready():
 	tileMap.connect('cellClicked', moveToAttackRock);
 	
 	for i in 5:
-		inventory.addItem(lootGen.generateItem());
+		inventory.addItem(lootGen.generateLootFromRock());
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +52,7 @@ func attackTime():
 		attackTimer.stop();
 		worker.stopMiningAnimation();
 		resources.addResource(GlobalResources.ResourceType.COPPER, 5);
-		inventory.addItem(lootGen.generateItem());
+		inventory.addItem(lootGen.generateLootFromRock());
 		return;
 
 
