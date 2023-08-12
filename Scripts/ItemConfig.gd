@@ -1,18 +1,18 @@
-class_name ItemConfig
+extends Node
 
 var shittyAffixes: Array[Affix] = [
-	Affix.new(Globals.AffixType.Prefix, Globals.StatType.MiningPower, generateAffixTiers(4, 1000, 5, 5)),
-	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedMiningPower, generateAffixTiers(4, 1000, 20, 5)),
-	Affix.new(Globals.AffixType.Prefix, Globals.StatType.FireDamage, generateAffixTiers(4, 1000, 2, 3)),
-	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedFireDamage, generateAffixTiers(4, 1000, 20, 5))
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.MiningPower, generateAffixTiers(4, 1000, 5, 5, 5)),
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedMiningPower, generateAffixTiers(4, 1000, 5, 20, 5)),
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.FireDamage, generateAffixTiers(4, 1000, 5, 2, 3)),
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedFireDamage, generateAffixTiers(4, 1000, 5, 20, 5))
 ];
 
 var weaponItems: Array[Item] = [
 	Item.new(
-		"Wooden Pickaxe",
+		"Rusty Chisel",
 		Globals.SlotType.Weapon, [
 			Modifier.new(Globals.StatType.MiningPower, [
-				ModifierTier.new(1, 1, 10),
+				ModifierTier.new(1, 5, 8),
 			])
 		],
 		shittyAffixes
@@ -91,10 +91,10 @@ var bootsItems: Array[Item] = [
 	)
 ];
 
-func generateAffixTiers(numTiers: int, startWeight: int, statStart: int, statChange: int):
+func generateAffixTiers(numTiers: int, startWeight: int, weightScaling: float, statStart: int, statChange: int):
 	var affixes: Array[ModifierTier];
 	for i in numTiers:
 		affixes.append(ModifierTier.new(startWeight, statStart, statStart + statChange));
-		startWeight /= 2;
+		startWeight /= weightScaling;
 		statStart += statChange;
 	return affixes;

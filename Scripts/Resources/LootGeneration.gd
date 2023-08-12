@@ -1,9 +1,18 @@
 class_name LootGeneration
 
-var itemConfig: ItemConfig = ItemConfig.new();
 var rand = RandomNumberGenerator.new();
 
 const ITEM_FROM_ROCK_CHANCE = 1;
+
+var possibleItems: Dictionary = {
+	Globals.SlotType.Weapon: ItemConfig.weaponItems,
+	Globals.SlotType.Head: ItemConfig.helmetItems,
+	Globals.SlotType.Chest: ItemConfig.chestItems,
+	Globals.SlotType.Amulet: ItemConfig.amuletItems,
+	Globals.SlotType.Ring: ItemConfig.ringItems,
+	Globals.SlotType.Gloves: ItemConfig.glovesItems,
+	Globals.SlotType.Boots: ItemConfig.bootsItems,
+};
 
 func generateLootFromRock():
 	if rand.randf() <= ITEM_FROM_ROCK_CHANCE:
@@ -11,15 +20,6 @@ func generateLootFromRock():
 
 
 func generateItem():
-	var possibleItems: Dictionary = {
-		Globals.SlotType.Weapon: itemConfig.weaponItems,
-		Globals.SlotType.Head: itemConfig.helmetItems,
-		Globals.SlotType.Chest: itemConfig.chestItems,
-		Globals.SlotType.Amulet: itemConfig.amuletItems,
-		Globals.SlotType.Ring: itemConfig.ringItems,
-		Globals.SlotType.Gloves: itemConfig.glovesItems,
-		Globals.SlotType.Boots: itemConfig.bootsItems,
-	};
 	var itemType = rand.randi_range(0, Globals.SlotType.values().size()-1);
 	var itemIndex = rand.randi_range(0, possibleItems[itemType].size()-1);
 	return generateItemWithStats(possibleItems[itemType][itemIndex]);

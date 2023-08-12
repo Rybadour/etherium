@@ -3,6 +3,8 @@ class_name GearSlots
 
 signal returnItem(item: RealItem);
 
+var statLabelScene = preload("res://Components/StatLabel.tscn");
+
 @onready var slots: Dictionary = { #SlotType -> GearSlot
 	Globals.SlotType.Head: get_node("Head"),
 	Globals.SlotType.Weapon: get_node("Weapon"),
@@ -12,6 +14,10 @@ signal returnItem(item: RealItem);
 	Globals.SlotType.Ring: get_node("Ring"),
 	Globals.SlotType.Boots: get_node("Boots"),
 };
+@onready var statLabelContainer: GridContainer = get_node("%StatLabels");
+
+var totalStats: Dictionary; #StatType -> float
+var statLabels: Dictionary; #StatType -> Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,9 +33,34 @@ func assignGear(item: RealItem):
 	var slot = slots[item.item.slotType];
 	if slot == null:
 		return;
-		
+	
+	addStatsFromItem(item);
+	updateStatLabels();
 	slot.setItem(item);
 	slot.itemTile.connect("transferRequest", Callable(self, "returnItemRequest").bind(item));
+
+
+func addStatsFromItem(item: RealItem):
+	addStats(item.implicits);
+	addStats(item.prefixes);
+	addStats(item.suffixes);
+
+
+func addStats(stats: Dictionary):
+	for stat in stats.keys():
+		var value = totalStats[stat] if totalStats.has(stat) else 0;
+		totalStats[stat] = value + stats[stat];
+		
+
+func updateStatLabels():
+	for stat in totalStats.keys():
+		if !statLabels.has(stat):
+			statLabels[stat] = statLabelScene.instantiate();
+			statLabelContainer.add_child(statLabels[stat]);
+		if !statLabels[stat].visible:
+			statLabels[stat].visible = true;
+			statLabelContainer.add_child(statLabels[stat]);
+		statLabels[stat].text = Utils.getModifierText(stat, totalStats[stat]);
 
 
 func removeGear(slotType: Globals.SlotType):

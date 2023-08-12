@@ -24,8 +24,7 @@ func _ready():
 
 	tileMap.connect('cellClicked', moveToAttackRock);
 	
-	for i in 10:
-		inventory.pickupItem(lootGen.generateLootFromRock());
+	inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.weaponItems[0]));
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

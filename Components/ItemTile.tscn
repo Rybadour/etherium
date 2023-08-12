@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://c6eyplrshr1ag" path="res://Assets/flat-hammer.svg" id="2_ininv"]
 
 [node name="ItemTile" type="Control"]
-custom_minimum_size = Vector2(90, 128)
+custom_minimum_size = Vector2(124, 188)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 123.0
+offset_bottom = 188.0
 script = ExtResource("1_bw6ef")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -48,13 +48,13 @@ layout_mode = 2
 
 [node name="Name" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "Steel Pickaxe Of Greatness"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Container" type="Control" parent="MarginContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 44)
+custom_minimum_size = Vector2(32, 49)
 layout_mode = 2
 mouse_filter = 1
 
@@ -71,14 +71,14 @@ stretch_mode = 5
 
 [node name="Implicit1" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 text = "10-20 Mining"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Implicit2" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 text = "10% Ore Yield"
 horizontal_alignment = 1
 autowrap_mode = 2
