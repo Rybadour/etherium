@@ -56,6 +56,9 @@ func moveToAttackRock(cell: Vector2i):
 	var fastestPath = mainGame.getFastestPath(cell);
 	if fastestPath == null:
 		return;
+		
+	attackTimer.stop();
+	miningAnim.stop();
 	
 	targetRock = cell;
 	walkAnim.play("Walk");
