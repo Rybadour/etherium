@@ -357,6 +357,7 @@ mouse_filter = 2
 script = ExtResource("10_1tvl8")
 
 [node name="GearSlots" type="Panel" parent="CanvasLayer/InventoryPanel"]
+visible = false
 layout_mode = 0
 offset_left = -646.0
 offset_top = 68.0
@@ -508,6 +509,7 @@ script = ExtResource("5_mgs6q")
 
 [connection signal="pressed" from="CanvasLayer/InventoryPanel/OpenInventory" to="CanvasLayer/InventoryPanel" method="expandToggle"]
 
+[editable path="TileMap/Worker"]
 [editable path="CanvasLayer/Resources/VBoxContainer/Money"]
 [editable path="CanvasLayer/InventoryPanel/GearSlots/Weapon"]
 [editable path="CanvasLayer/InventoryPanel/GearSlots/Gloves"]

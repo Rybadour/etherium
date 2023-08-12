@@ -13,6 +13,7 @@ func _ready():
 	tileMap.connect('cellClicked', worker.moveToAttackRock);
 	
 	inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.weaponItems[0]));
+	#inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.bootsItems[0]));
 
 
 func workerAttacksRock(targetRock: Vector2i, damage: int):

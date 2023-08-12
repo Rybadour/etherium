@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1a4kmi7x7piu"]
+[gd_scene load_steps=10 format=3 uid="uid://c1a4kmi7x7piu"]
 
 [ext_resource type="Script" path="res://Components/Worker.gd" id="1_gnnty"]
 [ext_resource type="Texture2D" uid="uid://g24b2gxlp1gj" path="res://Assets/Characters.png" id="1_i7qbk"]
+[ext_resource type="Texture2D" uid="uid://dlyjun2oa06f1" path="res://Assets/GroundShadow.png" id="2_ktglf"]
 [ext_resource type="Texture2D" uid="uid://h574mnoi2fu4" path="res://Assets/Pickaxe.png" id="2_xak45"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0nvk"]
 atlas = ExtResource("1_i7qbk")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 16, 17)
 
 [sub_resource type="Animation" id="Animation_fqhbr"]
 resource_name = "Mining"
@@ -39,18 +40,49 @@ tracks/0/keys = {
 "values": [-0.507891]
 }
 
+[sub_resource type="Animation" id="Animation_ep44s"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.13439, 2.6701e-08, -0.13439]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3upnj"]
 _data = {
 "Mining": SubResource("Animation_fqhbr"),
-"RESET": SubResource("Animation_ku3fe")
+"RESET": SubResource("Animation_ku3fe"),
+"Walk": SubResource("Animation_ep44s")
 }
 
 [node name="Worker" type="Node2D"]
 script = ExtResource("1_gnnty")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.596078)
+z_index = -1
+position = Vector2(0, 9)
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("2_ktglf")
+
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
+rotation = -0.507891
 texture = SubResource("AtlasTexture_f0nvk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2d"]
+libraries = {
+"": SubResource("AnimationLibrary_3upnj")
+}
 
 [node name="Pickaxe" type="Sprite2D" parent="."]
 z_index = 1

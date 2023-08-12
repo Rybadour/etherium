@@ -1,21 +1,19 @@
 extends Node2D
 class_name Worker
 
+const BASE_MOVE_SPEED = 50;
+
+@onready var walkAnim: AnimationPlayer = get_node("Sprite2d/AnimationPlayer");
 @onready var miningAnim: AnimationPlayer = get_node("Pickaxe/AnimationPlayer");
 
 var mainGame: MainGame;
 var gearSlots: GearSlots;
-var followTimer = Timer.new();
 var pathToFollow: PackedVector2Array;
 var attackTimer = Timer.new();
 var isWorkerMining: bool = false;
 var targetRock: Vector2i;
 
 func _ready():
-	followTimer.connect("timeout", followTime);
-	followTimer.wait_time = 0.5;
-	add_child(followTimer);
-
 	attackTimer.connect("timeout", attackTime);
 	add_child(attackTimer);
 
@@ -30,20 +28,19 @@ func startMiningAnimation():
 	miningAnim.speed_scale = getAttackSpeed();
 
 
-func stopMiningAnimation():
-	miningAnim.stop();
-
-
-func followTime():
+func moveTime():
 	if pathToFollow.is_empty():
-		followTimer.stop();
 		isWorkerMining = true;
 		attackTimer.wait_time = 1 / getAttackSpeed();
 		attackTimer.start();
+		walkAnim.stop();
 		startMiningAnimation();
-		return
-		
-	position = pathToFollow[0];
+		return;
+	
+	var tween = get_tree().create_tween();
+	var distance = position.distance_to(pathToFollow[0]);
+	tween.tween_property(self, "position", pathToFollow[0], distance / getMovementSpeed());
+	tween.tween_callback(moveTime);
 	pathToFollow.remove_at(0);
 
 
@@ -52,7 +49,7 @@ func attackTime():
 	if isDead:
 		isWorkerMining = false;
 		attackTimer.stop();
-		stopMiningAnimation();
+		miningAnim.stop();
 
 
 func moveToAttackRock(cell: Vector2i):
@@ -61,13 +58,17 @@ func moveToAttackRock(cell: Vector2i):
 		return;
 	
 	targetRock = cell;
+	walkAnim.play("Walk");
+	walkAnim.speed_scale = getMovementSpeed() / BASE_MOVE_SPEED;
 	moveWorker(fastestPath);
 
 
 func moveWorker(path: PackedVector2Array):
 	attackTimer.stop();
 	pathToFollow = path;
-	followTimer.start();
+	if pathToFollow[0].is_equal_approx(position):
+		pathToFollow.remove_at(0);
+	moveTime();
 
 
 func getMiningDamage():
@@ -78,6 +79,13 @@ func getAttackSpeed():
 	return getStatWithMulti(Globals.StatType.ActionSpeed, Globals.StatType.IncreasedActionSpeed);
 
 
+func getMovementSpeed():
+	return getValueWithMulti(BASE_MOVE_SPEED, Globals.StatType.MovementSpeed);
+
+
 func getStatWithMulti(flatStat: Globals.StatType, multiStat: Globals.StatType):
 	var base: float = gearSlots.getStat(flatStat);
-	return base * (1 + gearSlots.getStat(multiStat)/100.0);
+	return getValueWithMulti(base, multiStat);
+
+func getValueWithMulti(value: float, multiStat: Globals.StatType):
+	return value * (1 + gearSlots.getStat(multiStat)/100.0);

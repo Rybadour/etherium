@@ -40,11 +40,11 @@ func expandToggle():
 func pickupItem(item: RealItem):
 	if item == null:
 		return;
-		
+	
 	if !gearSlots.isSlotFilled(item.item.slotType):
 		gearSlots.assignGear(item);
 		return;
-		
+	
 	addItemToList(item);
 
 
