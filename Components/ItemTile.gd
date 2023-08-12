@@ -4,6 +4,7 @@ class_name ItemTile
 @onready var textureRect: TextureRect = find_child('TextureRect');
 @onready var nameLabel: Label = get_node("MarginContainer/MarginContainer/HBoxContainer/Name");
 @onready var implicit1: Label = get_node("MarginContainer/MarginContainer/HBoxContainer/Implicit1");
+@onready var implicit2: Label = get_node("MarginContainer/MarginContainer/HBoxContainer/Implicit2");
 
 var item: RealItem;
 @export var icon: Texture2D;
@@ -14,12 +15,17 @@ func _ready():
 	if (item != null):
 		nameLabel.text = item.fullName;
 		implicit1.text = getModifierText(item.implicits.keys()[0], item.implicits.values()[0]);
+		implicit2.text = getModifierText(item.prefixes.keys()[0], item.prefixes.values()[0]);
 		
 
 func getModifierText(stat: Globals.StatType, value: float):
 	var text = '';
 	if stat == Globals.StatType.MiningPower:
 		text = str(value) + ' Mining Power';
+	elif stat == Globals.StatType.IncreasedMiningPower:
+		text = '+' + str(value) + '% Mining Power';
+	elif stat == Globals.StatType.FireDamage:
+		text = '+' + str(value) + ' Fire Damage';
 	return text;
 
 

@@ -1,25 +1,19 @@
-extends Node2D
 class_name LootGeneration
 
-
-@export var headItems: Array[Item];
+var itemConfig: ItemConfig = ItemConfig.new();
 
 var rand = RandomNumberGenerator.new();
-
-func _ready():
-	var item = generateItem();
-	print_debug(item.fullName);
 
 # Note: This should probably first choose an item type then an individual item from the list
 func generateItem():
 	var possibleItems: Dictionary = {
-		Globals.SlotType.Weapon: headItems,
-		Globals.SlotType.Head: headItems,
-		Globals.SlotType.Chest: headItems,
-		Globals.SlotType.Amulet: headItems,
-		Globals.SlotType.Ring: headItems,
-		Globals.SlotType.Gloves: headItems,
-		Globals.SlotType.Boots: headItems,
+		Globals.SlotType.Weapon: itemConfig.weaponItems,
+		Globals.SlotType.Head: itemConfig.weaponItems,
+		Globals.SlotType.Chest: itemConfig.weaponItems,
+		Globals.SlotType.Amulet: itemConfig.weaponItems,
+		Globals.SlotType.Ring: itemConfig.weaponItems,
+		Globals.SlotType.Gloves: itemConfig.weaponItems,
+		Globals.SlotType.Boots: itemConfig.weaponItems,
 	};
 	var itemType = rand.randi_range(0, Globals.SlotType.values().size()-1);
 	var itemIndex = rand.randi_range(0, possibleItems[itemType].size()-1);

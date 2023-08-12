@@ -1,20 +1,19 @@
-extends Resource
 class_name Modifier
 
-enum StatType {MiningPower, ActionSpeed}
-
-@export var stat: StatType;
-@export var tiers: Array[ModifierTier];
+var stat: Globals.StatType;
+var tiers: Array[ModifierTier];
 var totalWeight: int;
 
-func _ready():
+func _init(stat: Globals.StatType, tiers: Array[ModifierTier]):
+	self.stat = stat;
+	self.tiers = tiers;
 	for tier in tiers:
 		totalWeight += tier.weight;
 
 
 func generateModifierAmount(relativeRoll: int):
 	for tier in tiers:
-		if relativeRoll < tier.weight:
+		if relativeRoll <= tier.weight:
 			return tier.statMin;
 		else:
 			relativeRoll -= tier.weight;

@@ -1,6 +1,10 @@
-extends Resource
 class_name ModifierTier
 
-@export_range(1, 1000) var weight: int;
-@export var statMin: float;
-@export var statMax: float;
+var weight: int;
+var statMin: float;
+var statMax: float;
+
+func _init(weight: int, statMin: float, statMax: float):
+  self.weight = weight;
+  self.statMin = statMin;
+  self.statMax = statMax;

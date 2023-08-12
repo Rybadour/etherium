@@ -1,7 +1,5 @@
 class_name RealItem
 
-enum StatType {MiningPower, ActionSpeed, IncreasedMiningPower, IncreasedActionSpeed}
-
 var item: Item;
 var fullName: String;
 var implicits: Dictionary; #StatType -> float

@@ -4,7 +4,7 @@ extends Control
 @onready var resources: GlobalResources = get_node("CanvasLayer/Resources");
 @onready var worker: Worker = get_node("TileMap/Worker");
 @onready var inventory: InventoryPanel = get_node("CanvasLayer/InventoryPanel");
-@onready var lootGen: LootGeneration = get_node("LootGeneration");
+var lootGen: LootGeneration = LootGeneration.new();
 
 var followTimer = Timer.new();
 var pathToFollow: PackedVector2Array;
@@ -23,6 +23,9 @@ func _ready():
 	add_child(attackTimer);
 
 	tileMap.connect('cellClicked', moveToAttackRock);
+	
+	for i in 5:
+		inventory.addItem(lootGen.generateItem());
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

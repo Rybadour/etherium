@@ -1,17 +1,16 @@
-extends Resource
 class_name Affix
 
-@export var id: String;
-@export var itemNameMod: String;
-@export var descriptionTemplate: String;
-@export var type: Globals.AffixType;
-@export var stat: Globals.StatType;
-@export var tiers: Array[AffixTier];
+var type: Globals.AffixType;
+var stat: Globals.StatType;
+var tiers: Array[AffixTier];
 var totalWeight: int;
 
-func _ready():
+func _init(type: Globals.AffixType, stat: Globals.StatType, tiers: Array[AffixTier]):
+	self.type = type;
+	self.stat = stat;
+	self.tiers = tiers;
 	for tier in tiers:
-		totalWeight += tier.totalWeight;
+		totalWeight += tier.weight;
 
 
 func generateModifierAmount(relativeRoll: int):

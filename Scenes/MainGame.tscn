@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=20 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_dvsms"]
@@ -11,9 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
 [ext_resource type="Texture2D" uid="uid://wtaic6hpdy7f" path="res://Assets/gold_treasure_icons_16x16/5.png" id="7_my7gg"]
 [ext_resource type="Script" path="res://Scenes/InventoryPanel.gd" id="10_1tvl8"]
-[ext_resource type="PackedScene" uid="uid://dr7eba6ihmue2" path="res://Components/ItemTile.tscn" id="10_kkn6j"]
-[ext_resource type="Texture2D" uid="uid://c6eyplrshr1ag" path="res://Assets/flat-hammer.svg" id="11_th6o8"]
-[ext_resource type="Texture2D" uid="uid://3nkhhafk8b2s" path="res://Assets/gloves.svg" id="12_1ttqw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1mnoq"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -372,18 +369,6 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-
-[node name="ItemTile" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
-layout_mode = 2
-icon = ExtResource("11_th6o8")
-
-[node name="ItemTile3" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
-layout_mode = 2
-icon = ExtResource("12_1ttqw")
-
-[node name="ItemTile2" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer" instance=ExtResource("10_kkn6j")]
-layout_mode = 2
-icon = ExtResource("12_1ttqw")
 
 [node name="Camera2d" type="Camera2D" parent="."]
 position = Vector2(340, 327)

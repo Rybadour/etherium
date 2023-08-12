@@ -1,12 +1,15 @@
-extends Resource
 class_name Item
 
-@export var name: String;
-@export var slotType: Globals.SlotType;
-@export var implicits: Array[Modifier];
-@export var affixes: Array[Affix];
+var name: String;
+var slotType: Globals.SlotType;
+var implicits: Array[Modifier];
+var affixes: Array[Affix];
 var totalWeight: int;
 
-func _ready():
+func _init(name: String, slotType: Globals.SlotType, implicits: Array[Modifier], affixes: Array[Affix]):
+	self.name = name;
+	self.slotType = slotType;
+	self.implicits = implicits;
+	self.affixes = affixes;
 	for affix in affixes:
 		totalWeight += affix.totalWeight;
