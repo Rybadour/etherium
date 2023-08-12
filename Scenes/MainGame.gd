@@ -1,8 +1,8 @@
 extends Control
 
-@onready var tileMap: Rocks = get_node("TileMap");
+@onready var tileMap: Level = get_node("%TileMap");
 @onready var resources: GlobalResources = get_node("CanvasLayer/Resources");
-@onready var worker: Worker = get_node("TileMap/Worker");
+@onready var worker: Worker = get_node("%TileMap/Worker");
 @onready var inventory: InventoryPanel = get_node("CanvasLayer/InventoryPanel");
 var lootGen: LootGeneration = LootGeneration.new();
 
@@ -24,8 +24,8 @@ func _ready():
 
 	tileMap.connect('cellClicked', moveToAttackRock);
 	
-	for i in 5:
-		inventory.addItem(lootGen.generateLootFromRock());
+	for i in 10:
+		inventory.pickupItem(lootGen.generateLootFromRock());
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +52,7 @@ func attackTime():
 		attackTimer.stop();
 		worker.stopMiningAnimation();
 		resources.addResource(GlobalResources.ResourceType.COPPER, 5);
-		inventory.addItem(lootGen.generateLootFromRock());
+		inventory.pickupItem(lootGen.generateLootFromRock());
 		return;
 
 

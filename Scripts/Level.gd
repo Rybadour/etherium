@@ -1,11 +1,11 @@
 extends TileMap
-class_name Rocks
+class_name Level
 
 signal cellClicked(cell: Vector2i)
 
 const ROCKS_LAYER = 2;
 
-@onready var rockUIContainer: Node2D = get_node("RockUIContainer");
+@onready var rockUIContainer: Node2D = get_node("%RockUIContainer");
 var rockScene = preload("res://Components/Rock.tscn")
 
 var astar_grid = AStarGrid2D.new();
@@ -34,7 +34,7 @@ func _ready():
 		astar_grid.set_point_solid(cell);
 
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_released("primary_select"):
 		cellClicked.emit(self.local_to_map(self.get_local_mouse_position()));
 

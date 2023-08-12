@@ -3,7 +3,7 @@ class_name LootGeneration
 var itemConfig: ItemConfig = ItemConfig.new();
 var rand = RandomNumberGenerator.new();
 
-const ITEM_FROM_ROCK_CHANCE = 0.5;
+const ITEM_FROM_ROCK_CHANCE = 1;
 
 func generateLootFromRock():
 	if rand.randf() <= ITEM_FROM_ROCK_CHANCE:
