@@ -17,20 +17,20 @@ static func comma_sep(number):
 static func getModifierText(stat: Globals.StatType, value: float):
 	var text = '';
 	if stat == Globals.StatType.MiningPower:
-		text = str(value) + ' Mining Power';
+		text = "%.0f" % value + ' Mining Power';
 	elif stat == Globals.StatType.IncreasedMiningPower:
-		text = '+' + str(value) + '% Mining Power';
+		text = '+' + "%.0f" % value + '% Mining Power';
 	elif stat == Globals.StatType.ActionSpeed:
-		text = str(value) + ' Action Speed';
+		text = "%.2f" % value + ' Action Speed';
 	elif stat == Globals.StatType.IncreasedActionSpeed:
-		text = '+' + str(value) + '% Action Speed';
+		text = '+' + "%.0f" % value + '% Action Speed';
 	elif stat == Globals.StatType.FireDamage:
-		text = '+' + str(value) + ' Fire Damage';
+		text = '+' + "%.0f" % value + ' Fire Damage';
 	elif stat == Globals.StatType.IncreasedFireDamage:
-		text = '+' + str(value) + '% Fire Damage';
+		text = '+' + "%.0f" % value + '% Fire Damage';
 	elif stat == Globals.StatType.OilCapacity:
-		text = '+' + str(value) + ' Oil Capacity';
+		text = '+' + "%.0f" % value + ' Oil Capacity';
 	elif stat == Globals.StatType.MovementSpeed:
-		text = '+' + str(value) + '% Move Speed';
+		text = '+' + "%.0f" % value + '% Move Speed';
 	return text;
 

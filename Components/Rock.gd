@@ -3,8 +3,8 @@ class_name Rock
 
 @onready var healthBar: ProgressBar = get_node("Health/HealthBar");
 
-var MAX_HEALTH = 10;
-var health: int = 10;
+var MAX_HEALTH = 30;
+var health: int = 30;
 
 func _ready():
 	updateBar();

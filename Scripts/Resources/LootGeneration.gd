@@ -53,6 +53,6 @@ func generateItemWithStats(item: Item):
 func generateModifierAmount(tiers: Array[ModifierTier], relativeRoll: int):
 	for tier in tiers:
 		if relativeRoll <= tier.weight:
-			return rand.randi_range(tier.statMin, tier.statMax);
+			return rand.randf_range(tier.statMin, tier.statMax);
 		else:
 			relativeRoll -= tier.weight;

@@ -19,14 +19,8 @@ var statLabelScene = preload("res://Components/StatLabel.tscn");
 var totalStats: Dictionary; #StatType -> float
 var statLabels: Dictionary; #StatType -> Label
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func getStat(stat: Globals.StatType):
+	return totalStats[stat] if totalStats.has(stat) else 0;
 
 
 func assignGear(item: RealItem):

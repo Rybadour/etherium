@@ -3,8 +3,9 @@ extends Node
 var shittyAffixes: Array[Affix] = [
 	Affix.new(Globals.AffixType.Prefix, Globals.StatType.MiningPower, generateAffixTiers(4, 1000, 5, 5, 5)),
 	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedMiningPower, generateAffixTiers(4, 1000, 5, 20, 5)),
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedActionSpeed, generateAffixTiers(4, 1000, 5, 5, 5)),
 	Affix.new(Globals.AffixType.Prefix, Globals.StatType.FireDamage, generateAffixTiers(4, 1000, 5, 2, 3)),
-	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedFireDamage, generateAffixTiers(4, 1000, 5, 20, 5))
+	Affix.new(Globals.AffixType.Prefix, Globals.StatType.IncreasedFireDamage, generateAffixTiers(4, 1000, 5, 20, 5)),
 ];
 
 var weaponItems: Array[Item] = [
@@ -13,6 +14,9 @@ var weaponItems: Array[Item] = [
 		Globals.SlotType.Weapon, [
 			Modifier.new(Globals.StatType.MiningPower, [
 				ModifierTier.new(1, 5, 8),
+			]),
+			Modifier.new(Globals.StatType.ActionSpeed, [
+				ModifierTier.new(1, 1, 1.25),
 			])
 		],
 		shittyAffixes
