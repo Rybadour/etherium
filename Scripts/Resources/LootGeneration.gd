@@ -43,6 +43,7 @@ func generateItemWithStats(item: Item):
 					realItem.prefixes[affix.stat] = statVal;
 				else:
 					realItem.suffixes[affix.stat] = statVal;
+				break;
 				
 			else:
 				roll -= affix.totalWeight;

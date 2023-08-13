@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=28 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" path="res://Scenes/MainGame.gd" id="1_dvsms"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://i718nfdld7bm" path="res://Assets/war-pick.svg" id="12_u5ocn"]
 [ext_resource type="Texture2D" uid="uid://cx8rildsoro37" path="res://Assets/leather-armor.svg" id="13_1q8oo"]
 [ext_resource type="Texture2D" uid="uid://3nkhhafk8b2s" path="res://Assets/gloves.svg" id="14_416hv"]
-[ext_resource type="PackedScene" uid="uid://dr7eba6ihmue2" path="res://Components/ItemTile.tscn" id="14_smdbc"]
 [ext_resource type="Texture2D" uid="uid://d27feyqwm5gkw" path="res://Assets/steeltoe-boots.svg" id="16_8ynj8"]
 [ext_resource type="Texture2D" uid="uid://b50q8lc0bxhgh" path="res://Assets/necklace.svg" id="17_hvqfh"]
 [ext_resource type="Texture2D" uid="uid://c418sfq6fmtya" path="res://Assets/ring.svg" id="18_gtsah"]
@@ -357,7 +356,6 @@ mouse_filter = 2
 script = ExtResource("10_1tvl8")
 
 [node name="GearSlots" type="Panel" parent="CanvasLayer/InventoryPanel"]
-visible = false
 layout_mode = 0
 offset_left = -646.0
 offset_top = 68.0
@@ -382,9 +380,6 @@ offset_bottom = 336.0
 
 [node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Weapon/MarginContainer" index="1"]
 texture = ExtResource("12_u5ocn")
-
-[node name="ItemTile" parent="CanvasLayer/InventoryPanel/GearSlots/Weapon/MarginContainer" index="2" instance=ExtResource("14_smdbc")]
-layout_mode = 2
 
 [node name="Gloves" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
 layout_mode = 0

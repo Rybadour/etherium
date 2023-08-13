@@ -44,7 +44,13 @@ func addStats(stats: Dictionary):
 	for stat in stats.keys():
 		var value = totalStats[stat] if totalStats.has(stat) else 0;
 		totalStats[stat] = value + stats[stat];
-		
+
+
+func removeStats(stats: Dictionary):
+	for stat in stats.keys():
+		if totalStats.has(stat):
+			totalStats[stat] -= stats[stat];
+
 
 func updateStatLabels():
 	for stat in totalStats.keys():
@@ -54,6 +60,9 @@ func updateStatLabels():
 		if !statLabels[stat].visible:
 			statLabels[stat].visible = true;
 			statLabelContainer.add_child(statLabels[stat]);
+		if totalStats[stat] <= 0:
+			statLabels[stat].visible = false;
+			statLabelContainer.remove_child(statLabels[stat]);
 		statLabels[stat].text = Utils.getModifierText(stat, totalStats[stat]);
 
 
@@ -62,7 +71,13 @@ func removeGear(slotType: Globals.SlotType):
 	if slot == null:
 		return false;
 	
-	return slot.removeItem();
+	var item = slot.removeItem();
+	removeStats(item.implicits);
+	removeStats(item.prefixes);
+	removeStats(item.suffixes);
+	updateStatLabels();
+	
+	return item;
 
 
 func isSlotFilled(slotType: Globals.SlotType):
