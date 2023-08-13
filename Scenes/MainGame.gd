@@ -12,7 +12,7 @@ func _ready():
 	worker.setup(self);
 	tileMap.connect('cellClicked', worker.moveToAttackRock);
 	
-	inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.weaponItems[0]));
+	inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.weaponItems[0], lootGen.rarities[Globals.ItemRarity.Common]));
 	#inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.bootsItems[0]));
 
 

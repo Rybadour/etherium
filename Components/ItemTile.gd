@@ -16,8 +16,10 @@ func _ready():
 	textureRect.texture = icon;
 	if (item != null):
 		nameLabel.text = item.fullName;
+		nameLabel.add_theme_color_override("font_color", item.rarity.color);
 		implicit1.text = Utils.getModifierText(item.implicits.keys()[0], item.implicits.values()[0]);
-		implicit2.text = Utils.getModifierText(item.prefixes.keys()[0], item.prefixes.values()[0]);
+		if item.implicits.size() > 1:
+			implicit2.text = Utils.getModifierText(item.implicits.keys()[1], item.implicits.values()[1]);
 
 
 func _gui_input(event):
