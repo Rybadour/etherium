@@ -15,3 +15,7 @@ enum StatType {
 enum SlotType {Weapon, Head, Chest, Amulet, Ring, Gloves, Boots}
 
 enum ItemRarity {Common, Magic, Rare}
+
+enum ResourceType {MONEY, COPPER}
+
+enum OreType {Coal, Copper, Iron, Silver, Gold}

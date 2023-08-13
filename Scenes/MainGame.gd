@@ -13,13 +13,13 @@ func _ready():
 	tileMap.connect('cellClicked', worker.moveToAttackRock);
 	
 	inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.weaponItems[0], lootGen.rarities[Globals.ItemRarity.Common]));
-	#inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.bootsItems[0]));
+	#inventory.pickupItem(lootGen.generateItemWithStats(ItemConfig.bootsItems[0], lootGen.rarities[Globals.ItemRarity.Rare]));
 
 
 func workerAttacksRock(targetRock: Vector2i, damage: int):
 	var isDead = tileMap.hurtRock(targetRock, damage);
 	if isDead:
-		resources.addResource(GlobalResources.ResourceType.COPPER, 5);
+		resources.addResource(Globals.ResourceType.COPPER, 5);
 		inventory.pickupItem(lootGen.generateLootFromRock());
 	
 	return isDead;

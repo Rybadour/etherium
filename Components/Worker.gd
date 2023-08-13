@@ -67,6 +67,9 @@ func moveToAttackRock(cell: Vector2i):
 
 
 func moveWorker(path: PackedVector2Array):
+	if path.size() <= 0:
+		return;
+	
 	attackTimer.stop();
 	pathToFollow = path;
 	if pathToFollow[0].is_equal_approx(position):

@@ -3,8 +3,17 @@ class_name Rock
 
 @onready var healthBar: ProgressBar = get_node("Health/HealthBar");
 
-var MAX_HEALTH = 30;
-var health: int = 30;
+var maxHealth: int;
+var health: int;
+var ore: Globals.OreType;
+var oreYield: int;
+
+func setup(health: int, ore: Globals.OreType, oreYield: int):
+	self.health = health;
+	self.maxHealth = health;
+	self.ore = ore;
+	self.oreYield = oreYield;
+
 
 func _ready():
 	updateBar();
@@ -16,7 +25,7 @@ func takeDamage(damage: int):
 
 
 func updateBar():
-	healthBar.visible = health < MAX_HEALTH;
-	healthBar.max_value = MAX_HEALTH;
+	healthBar.visible = health < maxHealth;
+	healthBar.max_value = maxHealth;
 	healthBar.min_value = 0;
 	healthBar.value = health;

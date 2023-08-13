@@ -3,15 +3,13 @@ class_name GlobalResources
 
 var resourceComp = preload("res://Components/Resource.tscn");
 
-enum ResourceType {MONEY, COPPER}
-
 var resources: Dictionary = {
-	ResourceType.MONEY: 0,
-	ResourceType.COPPER: 0,
+	Globals.ResourceType.MONEY: 0,
+	Globals.ResourceType.COPPER: 0,
 }
 var resourceIds: Dictionary = {
-	ResourceType.MONEY: "Money",
-	ResourceType.COPPER: "Copper",
+	Globals.ResourceType.MONEY: "Money",
+	Globals.ResourceType.COPPER: "Copper",
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +21,7 @@ func _ready():
 			resource.set_visible(true);
 
 
-func addResource(res: ResourceType, amount: float):
+func addResource(res: Globals.ResourceType, amount: float):
 	if !resources.has(res):
 		return;
 
