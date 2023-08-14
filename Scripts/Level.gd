@@ -12,6 +12,7 @@ var rockScene = preload("res://Components/Rock.tscn")
 var astar_grid = AStarGrid2D.new();
 var rocks: Dictionary; #Vector2i -> Rock
 var rockTypes: Array[RockTile];
+var chestTiles: Array[ChestTile];
 var oreStringToTypeMap: Dictionary = {
 	"Coal": Globals.OreType.Coal,
 	"Copper": Globals.OreType.Copper,
@@ -46,14 +47,17 @@ func generateRockTypes():
 			var oreType: String = tileData.get_custom_data("OreType");
 			if oreType == "":
 				continue;
-			
-			rockTypes.append(RockTile.new(
-				sourceId,
-				tileId,
-				oreStringToTypeMap[oreType],
-				tileData.get_custom_data("Yield"),
-				tileData.get_custom_data("Strength"),
-			));
+
+			if oreType == "Chest":
+				chestTiles.append(ChestTile.new(sourceId, tileId));
+			else:
+				rockTypes.append(RockTile.new(
+					sourceId,
+					tileId,
+					oreStringToTypeMap[oreType],
+					tileData.get_custom_data("Yield"),
+					tileData.get_custom_data("Strength"),
+				));
 
 
 func getRockByStrength(strength: float):
@@ -72,15 +76,18 @@ func generateRocks():
 
 	noise.noise_type = FastNoiseLite.NoiseType.TYPE_PERLIN;
 	noise.seed = randi();
-	noise.fractal_octaves = 4
-	noise.frequency = 1.0 / 5.0
+	noise.fractal_octaves = 4;
+	noise.frequency = 1.0 / 5.0;
 
 	var floorCells = self.get_used_cells(FLOOR_LAYER);
 	const minThreshold = 0.1;
 	for cell in floorCells:
 		var cellNoise = noise.get_noise_2d(cell.x, cell.y);
 		if cellNoise > minThreshold:
-			createRock(cell, getRockByStrength((cellNoise-minThreshold) * 15));
+			if cellNoise > 0.4:
+				createChest(cell);
+			else:
+				createRock(cell, getRockByStrength((cellNoise-minThreshold) * 15));
 
 
 func createRock(cell: Vector2i, rockTile: RockTile):
@@ -96,6 +103,12 @@ func createRock(cell: Vector2i, rockTile: RockTile):
 
 	astar_grid.set_point_solid(cell);
 
+
+func createChest(cell: Vector2i):
+	var chest = chestTiles[randi_range(0, chestTiles.size()-1)];
+
+	self.set_cell(ROCKS_LAYER, cell, chest.tileSourceId, chest.tileId);
+	astar_grid.set_point_solid(cell);
 
 func _unhandled_input(event):
 	if event.is_action_released("primary_select"):
