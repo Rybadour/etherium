@@ -33,4 +33,3 @@ static func getModifierText(stat: Globals.StatType, value: float):
 	elif stat == Globals.StatType.MovementSpeed:
 		text = '+' + "%.0f" % value + '% Move Speed';
 	return text;
-

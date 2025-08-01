@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dr7eba6ihmue2"]
 
-[ext_resource type="Script" path="res://Components/ItemTile.gd" id="1_bw6ef"]
+[ext_resource type="Script" uid="uid://dn0vwkemjdirq" path="res://Components/ItemTile.gd" id="1_bw6ef"]
 [ext_resource type="Texture2D" uid="uid://c6eyplrshr1ag" path="res://Assets/flat-hammer.svg" id="2_ininv"]
 
 [node name="ItemTile" type="Control"]

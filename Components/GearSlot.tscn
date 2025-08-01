@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg5e7e1fkiyur"]
 
-[ext_resource type="Script" path="res://Components/GearSlot.gd" id="1_iu141"]
+[ext_resource type="Script" uid="uid://csg6hbrhy4y6w" path="res://Components/GearSlot.gd" id="1_iu141"]
 [ext_resource type="Texture2D" uid="uid://bnfxismu7uyak" path="res://Assets/warlord-helmet.svg" id="1_qruak"]
 
 [node name="ColorRect" type="ColorRect"]

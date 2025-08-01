@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c1a4kmi7x7piu"]
 
-[ext_resource type="Script" path="res://Components/Worker.gd" id="1_gnnty"]
+[ext_resource type="Script" uid="uid://cghlb1sb3bj0v" path="res://Components/Worker.gd" id="1_gnnty"]
 [ext_resource type="Texture2D" uid="uid://g24b2gxlp1gj" path="res://Assets/Characters.png" id="1_i7qbk"]
 [ext_resource type="Texture2D" uid="uid://dlyjun2oa06f1" path="res://Assets/GroundShadow.png" id="2_ktglf"]
 [ext_resource type="Texture2D" uid="uid://h574mnoi2fu4" path="res://Assets/Pickaxe.png" id="2_xak45"]
@@ -59,9 +59,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3upnj"]
 _data = {
-"Mining": SubResource("Animation_fqhbr"),
-"RESET": SubResource("Animation_ku3fe"),
-"Walk": SubResource("Animation_ep44s")
+&"Mining": SubResource("Animation_fqhbr"),
+&"RESET": SubResource("Animation_ku3fe"),
+&"Walk": SubResource("Animation_ep44s")
 }
 
 [node name="Worker" type="Node2D"]
