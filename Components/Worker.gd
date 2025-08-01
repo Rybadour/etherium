@@ -6,12 +6,14 @@ const BASE_MOVE_SPEED = 50;
 @onready var walkAnim: AnimationPlayer = get_node("Sprite2d/AnimationPlayer");
 @onready var miningAnim: AnimationPlayer = get_node("Pickaxe/AnimationPlayer");
 
+var level: int = 1;
+
 var mainGame: MainGame;
-var gearSlots: GearSlots;
 var pathToFollow: PackedVector2Array;
 var attackTimer = Timer.new();
 var isWorkerMining: bool = false;
 var targetRock: Vector2i;
+
 
 func _ready():
 	attackTimer.connect("timeout", attackTime);
@@ -20,7 +22,6 @@ func _ready():
 
 func setup(mainGame: MainGame):
 	self.mainGame = mainGame;
-	self.gearSlots = mainGame.inventory.gearSlots;
 
 
 func startMiningAnimation():
@@ -78,20 +79,12 @@ func moveWorker(path: PackedVector2Array):
 
 
 func getMiningDamage():
-	return getStatWithMulti(Globals.StatType.MiningPower, Globals.StatType.IncreasedMiningPower);
+	return 1 * level;
 
 
 func getAttackSpeed():
-	return getStatWithMulti(Globals.StatType.ActionSpeed, Globals.StatType.IncreasedActionSpeed);
+	return 1 + log(0.1 * level);
 
 
 func getMovementSpeed():
-	return getValueWithMulti(BASE_MOVE_SPEED, Globals.StatType.MovementSpeed);
-
-
-func getStatWithMulti(flatStat: Globals.StatType, multiStat: Globals.StatType):
-	var base: float = gearSlots.getStat(flatStat);
-	return getValueWithMulti(base, multiStat);
-
-func getValueWithMulti(value: float, multiStat: Globals.StatType):
-	return value * (1 + gearSlots.getStat(multiStat)/100.0);
+	return BASE_MOVE_SPEED + log(10 * level);

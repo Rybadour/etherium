@@ -1,21 +1,7 @@
 extends Node
 
-enum AffixType {Prefix, Suffix}
+enum StatType {MiningPower, MoveSpeed, ActionSpeed}
 
-enum StatType {
-	MiningPower, IncreasedMiningPower,
-	ActionSpeed, IncreasedActionSpeed,
-	FireDamage, IncreasedFireDamage,
-	OilCapacity,
-	ChanceToFindItems,
-	QuantityOfOre,
-	MovementSpeed,
-}
+enum ResourceType {Gold, Coal, Iron, Copper, Silver, Tin}
 
-enum SlotType {Weapon, Head, Chest, Amulet, Ring, Gloves, Boots}
-
-enum ItemRarity {Common, Magic, Rare}
-
-enum ResourceType {MONEY, COPPER}
-
-enum OreType {Coal, Copper, Iron, Silver, Gold}
+enum OreType {Coal, Iron, Copper, Silver, Tin, Gold}

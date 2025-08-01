@@ -4,12 +4,12 @@ class_name GlobalResources
 var resourceComp = preload("res://Components/Resource.tscn");
 
 var resources: Dictionary = {
-	Globals.ResourceType.MONEY: 0,
-	Globals.ResourceType.COPPER: 0,
+	Globals.ResourceType.Gold: 0,
+	Globals.ResourceType.Copper: 0,
 }
 var resourceIds: Dictionary = {
-	Globals.ResourceType.MONEY: "Money",
-	Globals.ResourceType.COPPER: "Copper",
+	Globals.ResourceType.Gold: "Money",
+	Globals.ResourceType.Copper: "Copper",
 }
 
 # Called when the node enters the scene tree for the first time.

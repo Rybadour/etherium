@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://gnw3hteqcmeb"]
+[gd_scene load_steps=22 format=3 uid="uid://gnw3hteqcmeb"]
 
 [ext_resource type="Texture2D" uid="uid://he1i03lqdjlj" path="res://Assets/lpc-floors/floors.png" id="1_cv267"]
 [ext_resource type="Script" uid="uid://bivjmv4e4g25b" path="res://Scenes/MainGame.gd" id="1_dvsms"]
@@ -11,15 +11,6 @@
 [ext_resource type="Script" uid="uid://csdb3hm3wshmq" path="res://Scripts/Resources.gd" id="5_o7vuv"]
 [ext_resource type="PackedScene" uid="uid://bvddwwutkyuxi" path="res://Components/Resource.tscn" id="5_xwsky"]
 [ext_resource type="Texture2D" uid="uid://wtaic6hpdy7f" path="res://Assets/gold_treasure_icons_16x16/5.png" id="7_my7gg"]
-[ext_resource type="Script" uid="uid://c5vuedylcolnk" path="res://Scenes/InventoryPanel.gd" id="10_1tvl8"]
-[ext_resource type="Script" uid="uid://dupv1ahtx8nhb" path="res://Scenes/GearSlots.gd" id="11_2n615"]
-[ext_resource type="PackedScene" uid="uid://bg5e7e1fkiyur" path="res://Components/GearSlot.tscn" id="11_sufii"]
-[ext_resource type="Texture2D" uid="uid://i718nfdld7bm" path="res://Assets/war-pick.svg" id="12_u5ocn"]
-[ext_resource type="Texture2D" uid="uid://cx8rildsoro37" path="res://Assets/leather-armor.svg" id="13_1q8oo"]
-[ext_resource type="Texture2D" uid="uid://3nkhhafk8b2s" path="res://Assets/gloves.svg" id="14_416hv"]
-[ext_resource type="Texture2D" uid="uid://d27feyqwm5gkw" path="res://Assets/steeltoe-boots.svg" id="16_8ynj8"]
-[ext_resource type="Texture2D" uid="uid://b50q8lc0bxhgh" path="res://Assets/necklace.svg" id="17_hvqfh"]
-[ext_resource type="Texture2D" uid="uid://c418sfq6fmtya" path="res://Assets/ring.svg" id="18_gtsah"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1mnoq"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -291,6 +282,34 @@ sources/1 = SubResource("TileSetAtlasSource_wrgdy")
 sources/2 = SubResource("TileSetAtlasSource_wiedq")
 sources/3 = SubResource("TileSetAtlasSource_ob67y")
 
+[sub_resource type="GDScript" id="GDScript_73a8k"]
+script/source = "extends Panel
+class_name InventoryPanel
+
+const COLLAPSED_SIZE = 210;
+const EXPANDED_SIZE = 455;
+var isExpanded = false;
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	custom_minimum_size.x = COLLAPSED_SIZE;
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func expandToggle():
+	if isExpanded:
+		custom_minimum_size.x = COLLAPSED_SIZE;
+		isExpanded = false;
+	else:
+		custom_minimum_size.x = EXPANDED_SIZE;
+		isExpanded = true;
+"
+
 [node name="MainGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -353,14 +372,11 @@ layout_mode = 2
 
 [node name="HBoxContainer" parent="CanvasLayer/Resources/VBoxContainer/Money" index="0"]
 layout_mode = 1
+anchors_preset = 15
 offset_left = 5.0
 
 [node name="TextureRect" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="0"]
-layout_mode = 2
 texture = ExtResource("7_my7gg")
-
-[node name="AmountLabel" parent="CanvasLayer/Resources/VBoxContainer/Money/HBoxContainer" index="1"]
-layout_mode = 2
 
 [node name="Copper" parent="CanvasLayer/Resources/VBoxContainer" instance=ExtResource("5_xwsky")]
 layout_mode = 2
@@ -374,119 +390,7 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("10_1tvl8")
-
-[node name="GearSlots" type="Panel" parent="CanvasLayer/InventoryPanel"]
-visible = false
-layout_mode = 0
-offset_left = -646.0
-offset_top = 68.0
-offset_right = -64.0
-offset_bottom = 1017.0
-mouse_filter = 2
-script = ExtResource("11_2n615")
-
-[node name="Head" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 223.0
-offset_top = 40.0
-offset_right = 347.0
-offset_bottom = 228.0
-
-[node name="Weapon" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 148.0
-offset_right = 204.0
-offset_bottom = 336.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Weapon/MarginContainer" index="1"]
-texture = ExtResource("12_u5ocn")
-
-[node name="Gloves" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 362.0
-offset_right = 207.0
-offset_bottom = 550.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Gloves/MarginContainer" index="1"]
-texture = ExtResource("14_416hv")
-
-[node name="Chest" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 225.0
-offset_top = 250.0
-offset_right = 349.0
-offset_bottom = 438.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Chest/MarginContainer" index="1"]
-texture = ExtResource("13_1q8oo")
-
-[node name="Boots" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 225.0
-offset_top = 462.0
-offset_right = 349.0
-offset_bottom = 650.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Boots/MarginContainer" index="1"]
-texture = ExtResource("16_8ynj8")
-
-[node name="Amulet" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 369.0
-offset_top = 148.0
-offset_right = 493.0
-offset_bottom = 336.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Amulet/MarginContainer" index="1"]
-texture = ExtResource("17_hvqfh")
-
-[node name="Ring" parent="CanvasLayer/InventoryPanel/GearSlots" instance=ExtResource("11_sufii")]
-layout_mode = 0
-offset_left = 369.0
-offset_top = 362.0
-offset_right = 493.0
-offset_bottom = 550.0
-
-[node name="TextureRect" parent="CanvasLayer/InventoryPanel/GearSlots/Ring/MarginContainer" index="1"]
-texture = ExtResource("18_gtsah")
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/InventoryPanel/GearSlots"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -247.0
-offset_top = 208.5
-offset_right = 252.0
-offset_bottom = 218.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryPanel/GearSlots"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -240.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 5
-
-[node name="StatLabels" type="GridContainer" parent="CanvasLayer/InventoryPanel/GearSlots/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 4
-columns = 3
+script = SubResource("GDScript_73a8k")
 
 [node name="OpenInventory" type="Button" parent="CanvasLayer/InventoryPanel"]
 layout_mode = 1
@@ -501,25 +405,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 22
 text = "<"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 43.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 20
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
-
 [node name="Camera2d" type="Camera2D" parent="."]
 position = Vector2(340, 327)
 script = ExtResource("5_mgs6q")
@@ -528,9 +413,3 @@ script = ExtResource("5_mgs6q")
 
 [editable path="TileMap/Worker"]
 [editable path="CanvasLayer/Resources/VBoxContainer/Money"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Weapon"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Gloves"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Chest"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Boots"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Amulet"]
-[editable path="CanvasLayer/InventoryPanel/GearSlots/Ring"]
